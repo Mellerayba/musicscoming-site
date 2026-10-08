@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Music's Coming</title>
+<meta name="description" content="A deposit-backed booking marketplace for Manchester's bars and freelance musicians.">
+<meta property="og:title" content="Music's Coming">
+<meta property="og:description" content="Deposit-backed gig bookings for Manchester's bars and freelance musicians. And we'll make sure it gets there.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  img { max-width: 100%; }
+
+  :root {
+    --ink: #1A1420;
+    --paper: #FFFFFF;
+    --plum: #2E1A47;
+    --plum-soft: #F3EFF9;
+    --amber: #F2A541;
+    --forfeit: #D8503B;
+    --lilac: #9A8FAE;
+    --rule: #E3DCEE;
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Work Sans", system-ui, sans-serif;
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 1080px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 5vw, 64px);
+  }
+
+  .display {
+    font-family: "Anton", "Arial Narrow", sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+  }
+
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--plum);
+  }
+
+  a { color: var(--plum); }
+  a.quiet { color: inherit; text-decoration-color: var(--lilac); }
+
+  /* ---------- Header ---------- */
+  header.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px 22px;
+    padding-block: 22px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .wordmark {
+    font-family: "Anton", sans-serif;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+  }
+  header nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    transition: border-color .15s ease;
+  }
+  header nav a:hover { border-color: var(--amber); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding-block: clamp(48px, 9vw, 96px) clamp(40px, 7vw, 72px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero .eyebrow { margin-bottom: 18px; }
+  .hero h1 {
+    margin: 0;
+    font-size: clamp(3.2rem, 11vw, 7rem);
+    line-height: 0.92;
+  }
+  .hero .tagline {
+    font-style: italic;
+    color: var(--plum);
+    font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+    margin: 18px 0 0;
+    max-width: 30ch;
+  }
+  .hero .pitch {
+    margin: 28px 0 0;
+    max-width: 56ch;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #39303F;
+  }
+  .hero .pitch b { color: var(--ink); }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 34px;
+    align-items: center;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    padding: 13px 22px;
+    border: 1.5px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn.solid {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn.solid:hover { background: var(--plum); border-color: var(--plum); }
+  .btn.ghost:hover { background: var(--plum-soft); }
+
+  .status-chip {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--lilac);
+  }
+  .status-chip .dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--amber);
+    margin-right: 6px;
+    vertical-align: 1px;
+  }
+
+  /* ---------- Section scaffolding ---------- */
+  section.band {
+    padding-block: clamp(40px, 7vw, 72px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .band h2 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 0 0 8px;
+  }
+  .band .lede {
+    max-width: 46ch;
+    color: #39303F;
+    margin: 0 0 36px;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  /* ---------- The gamble: listing rows ---------- */
+  .listing { border-top: 1px solid var(--ink); }
+  .listing-row {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr;
+    gap: 20px;
+    padding-block: 20px;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .listing-row .idx {
+    font-family: "IBM Plex Mono", monospace;
+    color: var(--lilac);
+    font-size: 0.9rem;
+  }
+  .listing-row h3 {
+    margin: 0 0 6px;
+    font-size: 1.12rem;
+    font-weight: 600;
+  }
+  .listing-row p { margin: 0; color: #39303F; line-height: 1.55; max-width: 58ch; }
+
+  /* ---------- How it works: ticket stub steps ---------- */
+  .stub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+  }
+  .stub {
+    border-right: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding: 22px 20px 26px;
+    position: relative;
+  }
+  .stub .stamp {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.74rem;
+    letter-spacing: 0.1em;
+    color: var(--lilac);
+    text-transform: uppercase;
+  }
+  .stub .num {
+    font-family: "Anton", sans-serif;
+    font-size: 2.1rem;
+    color: var(--plum);
+    margin: 6px 0 10px;
+    line-height: 1;
+  }
+  .stub h3 { margin: 0 0 8px; font-size: 1.02rem; }
+  .stub p { margin: 0; color: #39303F; font-size: 0.92rem; line-height: 1.5; }
+
+  /* ---------- The receipt (distinctive device) ---------- */
+  .receipt-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .receipt-copy { flex: 1 1 320px; max-width: 48ch; }
+  .receipt-copy p { color: #39303F; line-height: 1.6; margin: 0 0 14px; }
+  .receipt {
+    flex: 0 1 320px;
+    background: var(--plum);
+    color: #F3EFF9;
+    padding: 26px 24px 20px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.86rem;
+    line-height: 1.7;
+    position: relative;
+    -webkit-mask-image: radial-gradient(circle 5px at 0 50%, transparent 5px, black 5.5px), radial-gradient(circle 5px at 100% 50%, transparent 5px, black 5.5px);
+    -webkit-mask-size: 100% 50%, 100% 50%;
+    -webkit-mask-position: top, bottom;
+    -webkit-mask-repeat: no-repeat;
+    mask-image: radial-gradient(circle 5px at 0 50%, transparent 5px, black 5.5px), radial-gradient(circle 5px at 100% 50%, transparent 5px, black 5.5px);
+    mask-size: 100% 50%, 100% 50%;
+    mask-position: top, bottom;
+    mask-repeat: no-repeat;
+  }
+  .receipt .title {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.74rem;
+    color: var(--amber);
+    border-bottom: 1px dashed #5C4777;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .receipt .row { display: flex; justify-content: space-between; gap: 12px; }
+  .receipt .row.total { border-top: 1px dashed #5C4777; margin-top: 8px; padding-top: 8px; }
+  .receipt .ok { color: #9FE0B0; }
+  .receipt .bad { color: #F0998A; }
+  .receipt .divider { text-align: center; color: #5C4777; margin-block: 10px; letter-spacing: 0.3em; }
+
+  /* ---------- Why Manchester ---------- */
+  .credibility {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+  }
+  .credibility .quote {
+    font-family: "Anton", sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    line-height: 1.15;
+    text-transform: none;
+    color: var(--plum);
+  }
+  .credibility .supporting p { color: #39303F; line-height: 1.6; margin: 0 0 14px; }
+
+  @media (max-width: 720px) {
+    .credibility { grid-template-columns: 1fr; }
+  }
+
+  /* ---------- Footer / follow ---------- */
+  footer.wrap {
+    padding-block: clamp(40px, 7vw, 64px);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  footer h2 {
+    font-size: clamp(1.6rem, 3.6vw, 2.2rem);
+    margin: 0 0 14px;
+    max-width: 16ch;
+  }
+  footer .meta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--lilac);
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="wordmark">Music's Coming</div>
+  <nav style="display:flex;gap:22px;">
+    <a href="#how-it-works">How it works</a>
+    <a href="#follow">Follow</a>
+  </nav>
+</header>
+
+<section class="hero wrap">
+  <div class="eyebrow">Manchester, UK &mdash; est. 2026</div>
+  <h1 class="display">Music's<br>Coming.</h1>
+  <p class="tagline">And we'll make sure it gets there.</p>
+  <p class="pitch">
+    A booking marketplace for Manchester's bars and freelance musicians.
+    Artists build a profile, venues book them directly &mdash; and both sides
+    put down a <b>refundable deposit</b> to lock in the date. Show up, get it back.
+    Cancel, and it goes to the other side. <b>The first no-show that actually costs something.</b>
+  </p>
+  <div class="cta-row">
+    <a class="btn solid" href="https://www.instagram.com/musicscoming" target="_blank" rel="noopener">Follow the build &rarr;</a>
+    <span class="status-chip"><span class="dot"></span>Piloting in Manchester &mdash; not yet open to the public</span>
+  </div>
+</section>
+
+<section class="band wrap">
+  <div class="eyebrow">The problem</div>
+  <h2>Booking a musician is a trust gamble</h2>
+  <p class="lede">Right now it happens over DMs, word of mouth, and Facebook groups &mdash; with nothing backing the deal up.</p>
+  <div class="listing">
+    <div class="listing-row">
+      <div class="idx">01</div>
+      <div><h3>No consequence for backing out</h3><p>Artists no-show. Venues ghost on payment. A handshake deal with nothing behind it.</p></div>
+    </div>
+    <div class="listing-row">
+      <div class="idx">02</div>
+      <div><h3>No real way to vet anyone</h3><p>Booked over DMs and word of mouth &mdash; no structure, no accountability, no history to check.</p></div>
+    </div>
+    <div class="listing-row">
+      <div class="idx">03</div>
+      <div><h3>Existing platforms miss the point</h3><p>GigSalad, Bark, and Gigmit all solve discovery. None of them solve trust.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band wrap" id="how-it-works">
+  <div class="eyebrow">How it works</div>
+  <h2>Four stamps on a ticket</h2>
+  <p class="lede">Every booking goes through the same four steps, whichever side proposes it.</p>
+  <div class="stub-grid">
+    <div class="stub">
+      <div class="stamp">Step 01</div>
+      <div class="num">Find</div>
+      <h3>Discover &amp; propose</h3>
+      <p>Browse ranked profiles &mdash; reviews, track record, location. Either side can propose a date.</p>
+    </div>
+    <div class="stub">
+      <div class="stamp">Step 02</div>
+      <div class="num">Lock</div>
+      <h3>Both sides pay in</h3>
+      <p>A refundable deposit from the artist and the venue, held until the gig happens.</p>
+    </div>
+    <div class="stub">
+      <div class="stamp">Step 03</div>
+      <div class="num">Play</div>
+      <h3>Show up</h3>
+      <p>The gig happens. Both parties confirm, and both deposits are refunded in full.</p>
+    </div>
+    <div class="stub">
+      <div class="stamp">Step 04 &mdash; or</div>
+      <div class="num">Flake</div>
+      <h3>Cancel instead</h3>
+      <p>Back out, and your deposit is forfeited straight to whoever you let down.</p>
+    </div>
+  </div>
+</section>
+
+<section class="band wrap">
+  <div class="eyebrow">The differentiator</div>
+  <h2>Not a feature. The whole point.</h2>
+  <div class="receipt-wrap">
+    <div class="receipt-copy">
+      <p>Every other booking platform treats this as a <i>discovery</i> problem: more artists, more filters, better search.</p>
+      <p>We think discovery was never the actual blocker. <b style="color:var(--ink)">Trust is.</b> A venue that's been burned by a no-show doesn't need more options &mdash; it needs a reason to believe the next booking will actually happen.</p>
+      <p>So the deposit isn't a nice-to-have bolted on afterwards. It's the receipt that makes the whole thing real.</p>
+    </div>
+    <div class="receipt mono">
+      <div class="title">Booking Receipt &mdash; No. 0417</div>
+      <div class="row"><span>Artist deposit</span><span>&pound;50.00</span></div>
+      <div class="row"><span>Venue deposit</span><span>&pound;50.00</span></div>
+      <div class="divider">&middot; &middot; &middot;</div>
+      <div class="row"><span>Gig played in full</span><span class="ok">&check; SHOWED UP</span></div>
+      <div class="row total"><span>Artist refund</span><span class="ok">&pound;50.00</span></div>
+      <div class="row"><span>Venue refund</span><span class="ok">&pound;50.00</span></div>
+      <div class="divider">&mdash; vs &mdash;</div>
+      <div class="row"><span>Artist no-show</span><span class="bad">&times; FORFEITED</span></div>
+      <div class="row total"><span>Paid to venue</span><span class="bad">&pound;50.00</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band wrap">
+  <div class="eyebrow">Why Manchester, why now</div>
+  <div class="credibility">
+    <div class="quote">Built in the city that's already warm to this problem.</div>
+    <div class="supporting">
+      <p>Manchester's live music scene is strong and still growing post-pandemic, and bookings here still run on the same DMs-and-word-of-mouth system they always have.</p>
+      <p>We're piloting with a real Manchester venue first &mdash; not building in the dark and hoping someone shows up once it's finished.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap" id="follow">
+  <h2 class="display">Built in Manchester. Playing soon.</h2>
+  <div class="meta">
+    @musicscoming on Instagram<br>
+    Artists &amp; venues &mdash; get in touch to join the pilot
+  </div>
+</footer>
+
+</body>
+</html>
